@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="portal_my_loans" name="Mis Préstamos" inherit_id="portal.portal_my_home">
+        <t t-call="portal.portal_layout">
+            <div class="container mt-3">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <h2><i class="fa fa-book"></i> Mis Préstamos</h2>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <span class="badge badge-primary">
+                            <i class="fa fa-check-circle"></i> Préstamos activos: <t
+                                t-esc="member.active_loan_count if member else 0" />/5 </span>
+                    </div>
+                </div>
+
+                <t t-if="request.params.get('renewed')">
+                    <div class="alert alert-success">Préstamo renovado exitosamente. Nueva fecha
+                        límite: <t t-esc="loan.due_date" /></div>
+                </t>
+                <t t-if="request.params.get('error')">
+                    <div class="alert alert-danger">No se pudo renovar el préstamo. Contacte al
+                        bibliotecario.</div>
+                </t>
+
+                <div class="alert alert-info" t-if="not loans">
+                    <i class="fa fa-info-circle"></i> Actualmente no tienes libros prestados. </div>
+
+                <div class="table-responsive" t-if="loans">
+                    <table class="table table-hover">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>Libro</th>
+                                <th>Autor</th>
+                                <th>Fecha Préstamo</th>
+                                <th>Fecha Límite</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="loans" t-as="loan">
+                                <tr>
+                                    <td>
+                                        <t t-esc="loan.book_id.title" />
+                                    </td>
+                                    <td>
+                                        <t t-esc="loan.book_id.author" />
+                                    </td>
+                                    <td>
+                                        <t t-esc="loan.loan_date" />
+                                    </td>
+                                    <td>
+                                        <span
+                                            t-att-class="loan.due_date &lt; today and 'text-danger font-weight-bold' or ''">
+                                            <t t-esc="loan.due_date" />
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span
+                                            t-att-class="'badge badge-pill ' + {'borrowed': 'badge-success', 'overdue': 'badge-danger', 'returned': 'badge-secondary'}.get(loan.state, 'badge-info')">
+                                            <t t-if="loan.state == 'borrowed'">Prestado</t>
+                                            <t t-if="loan.state == 'overdue'">Vencido</t>
+                                            <t t-if="loan.state == 'returned'">Devuelto</t>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <t t-if="loan.state in ['borrowed', 'overdue']">
+                                            <button t-if="loan.state == 'borrowed'"
+                                                t-att-data-loan-id="loan.id"
+                                                class="btn btn-sm btn-outline-primary btn-renew">
+                                                <i class="fa fa-refresh"></i> Renovar </button>
+                                            <a t-if="loan.pos_order_id"
+                                                t-att-href="'/web#model=pos.order&amp;id=' + str(loan.pos_order_id.id) + '&amp;view_type=form'"
+                                                target="_blank"
+                                                class="btn btn-sm btn-outline-info ml-2">
+                                                <i class="fa fa-receipt"></i> Recibo </a>
+                                        </t>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

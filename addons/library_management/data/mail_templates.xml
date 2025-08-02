@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Plantilla para préstamos vencidos -->
+    <record id="email_template_loan_overdue" model="mail.template">
+        <field name="name">Notificación de préstamo vencido</field>
+        <field name="model_id" ref="model_library_loan" />
+        <field name="subject">Préstamo vencido - ${object.book_id.name}</field>
+        <field name="email_from">${object.company_id.email or 'biblioteca@example.com'}</field>
+        <field name="email_to">${object.member_id.email}</field>
+        <field name="body_html">
+            <![CDATA[
+<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+    <h2 style="color: #d9534f;">Recordatorio: Préstamo vencido</h2>
+    
+    <p>Hola ${object.member_id.name},</p>
+    
+    <p>El préstamo del libro <strong>${object.book_id.name}</strong> está vencido desde el ${format_date(object.due_date)}.</p>
+    
+    <div style="background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin: 15px 0;">
+        <p><strong>Detalles del préstamo:</strong></p>
+        <ul>
+            <li>Libro: ${object.book_id.name}</li>
+            <li>Fecha de préstamo: ${format_date(object.loan_date)}</li>
+            <li>Fecha de vencimiento: ${format_date(object.due_date)}</li>
+        </ul>
+    </div>
+    
+    <p>Por favor, regulariza tu situación devolviendo el libro lo antes posible.</p>
+    
+    <p>Puedes ver tus préstamos en el siguiente enlace:<br/>
+    <a href="${object.get_portal_url()}">Mis Préstamos</a></p>
+    
+    <p style="color: #6c757d; font-size: 0.9em;">
+        Si ya devolviste el libro, por favor ignora este mensaje.
+    </p>
+    
+    <hr style="border: none; border-top: 1px solid #e9ecef; margin: 20px 0;">
+    
+    <p style="text-align: center; color: #6c757d;">
+        Biblioteca ${object.company_id.name or ''}
+    </p>
+</div>
+            ]]>
+        </field>
+    </record>
+
+    <!-- Plantilla para confirmación de préstamo -->
+    <record id="email_template_loan_confirmation" model="mail.template">
+        <field name="name">Confirmación de préstamo</field>
+        <field name="model_id" ref="model_library_loan" />
+        <field name="subject">Confirmación de préstamo - ${object.book_id.name}</field>
+        <field name="email_from">${object.company_id.email or 'biblioteca@example.com'}</field>
+        <field name="email_to">${object.member_id.email}</field>
+        <field name="body_html">
+            <![CDATA[
+<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+    <h2 style="color: #28a745;">Confirmación de préstamo</h2>
+    
+    <p>Hola ${object.member_id.name},</p>
+    
+    <p>Has tomado prestado el libro <strong>${object.book_id.name}</strong> con éxito.</p>
+    
+    <div style="background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin: 15px 0;">
+        <p><strong>Detalles del préstamo:</strong></p>
+        <ul>
+            <li>Libro: ${object.book_id.name}</li>
+            <li>Fecha de préstamo: ${format_date(object.loan_date)}</li>
+            <li>Fecha de devolución: ${format_date(object.due_date)}</li>
+        </ul>
+    </div>
+    
+    <p>Puedes ver tus préstamos en el siguiente enlace:<br/>
+    <a href="${object.get_portal_url()}">Mis Préstamos</a></p>
+    
+    <hr style="border: none; border-top: 1px solid #e9ecef; margin: 20px 0;">
+    
+    <p style="text-align: center; color: #6c757d;">
+        Biblioteca ${object.company_id.name or ''}
+    </p>
+</div>
+            ]]>
+        </field>
+    </record>
+
+    <!-- Plantilla para confirmación de devolución -->
+    <record id="email_template_loan_return" model="mail.template">
+        <field name="name">Confirmación de devolución</field>
+        <field name="model_id" ref="model_library_loan" />
+        <field name="subject">Devolución registrada - ${object.book_id.name}</field>
+        <field name="email_from">${object.company_id.email or 'biblioteca@example.com'}</field>
+        <field name="email_to">${object.member_id.email}</field>
+        <field name="body_html">
+            <![CDATA[
+<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+    <h2 style="color: #17a2b8;">Devolución registrada</h2>
+    
+    <p>Hola ${object.member_id.name},</p>
+    
+    <p>Hemos registrado la devolución del libro <strong>${object.book_id.name}</strong>.</p>
+    
+    <div style="background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin: 15px 0;">
+        <p><strong>Detalles:</strong></p>
+        <ul>
+            <li>Libro: ${object.book_id.name}</li>
+            <li>Fecha de préstamo: ${format_date(object.loan_date)}</li>
+            <li>Fecha de devolución: ${format_date(object.return_date)}</li>
+        </ul>
+    </div>
+    
+    <p>¡Gracias por devolver el libro a tiempo!</p>
+    
+    <p>Puedes ver tu historial de préstamos en:<br/>
+    <a href="${object.get_portal_url()}">Mis Préstamos</a></p>
+    
+    <hr style="border: none; border-top: 1px solid #e9ecef; margin: 20px 0;">
+    
+    <p style="text-align: center; color: #6c757d;">
+        Biblioteca ${object.company_id.name or ''}
+    </p>
+</div>
+            ]]>
+        </field>
+    </record>
+</odoo>

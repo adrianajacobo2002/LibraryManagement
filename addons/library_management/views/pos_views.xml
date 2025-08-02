@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_pos_config_form_inherit" model="ir.ui.view">
+        <field name="name">pos.config.form.inherit.library</field>
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="point_of_sale.pos_config_view_form" />
+        <field name="arch" type="xml">
+            <field name="iface_available_categ_ids" position="attributes">
+                <attribute name="domain">[('id', '=', ref('library_management.category_books'))]</attribute>
+            </field>
+
+            <xpath expr="//field[@name='module_pos_restaurant']" position="after">
+                <field name="product_view" position="replace">
+                    <tree>
+                        <field name="name" />
+                        <field name="author" string="Autor" />
+                        <field name="default_code" string="ISBN" />
+                        <field name="list_price" invisible="1" />
+                        <field name="available_in_pos" invisible="1" />
+                    </tree>
+                </field>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_pos_library_config" model="ir.actions.act_window">
+        <field name="name">Punto de Venta Biblioteca</field>
+        <field name="res_model">pos.config</field>
+        <field name="view_mode">form</field>
+        <field name="context">{'default_name': 'Préstamos Biblioteca'}</field>
+    </record>
+</odoo>
