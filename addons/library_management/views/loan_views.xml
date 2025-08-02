@@ -1,1 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="action_library_loan" model="ir.actions.act_window">
+            <field name="name">Préstamos</field>
+            <field name="res_model">library.loan</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem
+            id="library_menu_loans"
+            name="Préstamos"
+            parent="library_menu_root"
+            action="action_library_loan"
+            sequence="40"
+        />
+        <record id="view_library_loan_tree" model="ir.ui.view">
+            <field name="name">library.loan.tree</field>
+            <field name="model">library.loan</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="book_id" />
+                    <field name="member_id" />
+                    <field name="loan_date" />
+                    <field name="due_date" />
+                    <field name="return_date" />
+                    <field name="state" />
+                </tree>
+            </field>
+        </record>
+        <record id="view_library_loan_form" model="ir.ui.view">
+            <field name="name">library.loan.form</field>
+            <field name="model">library.loan</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="action_return_book" string="Devolver" type="object"
+                            class="btn-primary" />
+                        <button name="action_renew_loan" string="Renovar" type="object"
+                            class="btn-secondary" />
+                        <field name="state" widget="statusbar" />
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="book_id" />
+                            <field name="member_id" />
+                        </group>
+                        <group>
+                            <field name="loan_date" />
+                            <field name="due_date" />
+                            <field name="return_date" />
+                        </group>
+                        <field name="pos_order_id" invisible="1" />
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="view_library_loan_search" model="ir.ui.view">
+            <field name="name">library.loan.search</field>
+            <field name="model">library.loan</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="book_id" />
+                    <field name="member_id" />
+                    <field name="state" />
+                    <filter name="borrowed" string="Prestados" domain="[('state','=','borrowed')]" />
+                    <filter name="overdue" string="Vencidos" domain="[('state','=','overdue')]" />
+                    <filter name="returned" string="Devueltos" domain="[('state','=','returned')]" />
+                </search>
+            </field>
+        </record>
+    </data>
+</odoo>

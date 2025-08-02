@@ -6,16 +6,16 @@
             <field name="res_model">library.member</field>
             <field name="view_mode">tree,form</field>
         </record>
-        <menuitem 
-            id="library_menu_root" 
-            name="Biblioteca" 
+        <menuitem
+            id="library_menu_root"
+            name="Biblioteca"
             sequence="10"
         />
-        <menuitem 
-            id="library_menu_members" 
-            name="Socios" 
+        <menuitem
+            id="library_menu_members"
+            name="Socios"
             parent="library_menu_root"
-            action="action_library_member" 
+            action="action_library_member"
             sequence="20"
         />
         <record id="view_tree_library_member" model="ir.ui.view">
@@ -23,12 +23,12 @@
             <field name="model">library.member</field>
             <field name="arch" type="xml">
                 <tree string="Socios">
-                    <field name="code" string="Código"/>
-                    <field name="first_name" string="Nombre"/>
-                    <field name="last_name" string="Apellido"/>
-                    <field name="email" string="Email"/>
-                    <field name="join_date" string="Fecha Alta"/>
-                    <field name="active" string="Activo" widget="boolean_button"/>
+                    <field name="code" string="Código" />
+                    <field name="first_name" string="Nombre" />
+                    <field name="last_name" string="Apellido" />
+                    <field name="email" string="Email" />
+                    <field name="join_date" string="Fecha Alta" />
+                    <field name="active" string="Activo" widget="boolean_button" />
                 </tree>
             </field>
         </record>
@@ -39,21 +39,28 @@
             <field name="arch" type="xml">
                 <form string="Socio de Biblioteca">
                     <header>
-                        <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
+                        <button name="action_generate_access_token"
+                            string="Generar Token Portal"
+                            type="object"
+                            class="btn-primary" />
+                        <field name="active" widget="boolean_button"
+                            options='{"terminology": "archive"}' />
                     </header>
                     <sheet>
                         <group>
-                            <field name="first_name"/>
-                            <field name="last_name"/>
-                            <field name="email"/>
+                            <field name="first_name" />
+                            <field name="last_name" />
+                            <field name="email" />
                         </group>
                         <group>
-                            <field name="code" readonly="1"/>
-                            <field name="join_date"/>
+                            <field name="code" readonly="1" />
+                            <field name="join_date" />
+                            <field name="access_token" readonly="1" />
+                            <field name="portal_url" readonly="1" widget="url" />
                         </group>
                         <notebook>
                             <page string="Información adicional">
-                                <field name="partner_id" invisible="1"/>
+                                <field name="partner_id" invisible="1" />
                             </page>
                         </notebook>
                     </sheet>
@@ -65,11 +72,11 @@
             <field name="model">library.member</field>
             <field name="arch" type="xml">
                 <search>
-                    <field name="code" string="Código"/>
-                    <field name="first_name" string="Nombre"/>
-                    <field name="last_name" string="Apellido"/>
-                    <filter name="active" string="Activos" domain="[('active','=',True)]"/>
-                    <filter name="inactive" string="Inactivos" domain="[('active','=',False)]"/>
+                    <field name="code" string="Código" />
+                    <field name="first_name" string="Nombre" />
+                    <field name="last_name" string="Apellido" />
+                    <filter name="active" string="Activos" domain="[('active','=',True)]" />
+                    <filter name="inactive" string="Inactivos" domain="[('active','=',False)]" />
                 </search>
             </field>
         </record>

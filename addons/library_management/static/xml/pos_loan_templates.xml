@@ -1,0 +1,10 @@
+<odoo>
+    <templates id="template" xml:space="preserve">
+        <t t-inherit="point_of_sale.ProductScreen" t-inherit-mode="extension">
+            <xpath expr="//div[contains(@class, 'control-buttons')]" position="inside">
+                <t t-set="show_discount_button" t-value="false"/>
+                <t t-set="show_tip_button" t-value="false"/>
+            </xpath>
+        </t>
+    </templates>
+</odoo>

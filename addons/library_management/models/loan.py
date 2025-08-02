@@ -9,10 +9,10 @@ class LibraryLoan(models.Model):
     _order = "loan_date desc"
 
     book_id = fields.Many2one(
-        "library.book",
+        "product.template",
         string="Libro",
         required=True,
-        domain="[('available', '=', True)]",
+        domain="[('is_library_book', '=', True), ('is_available', '=', True)]",
     )
     member_id = fields.Many2one(
         "library.member", 
@@ -48,14 +48,14 @@ class LibraryLoan(models.Model):
         if member and len(member.active_loan_ids) >= 5:
             raise ValidationError(_("El socio ya tiene cinco préstamos activos, el límite ha sido alcanzado."))
         
-        book = self.env['library.book'].browse(vals.get('book_id'))
-        if book and not book.available:
+        book = self.env['product.template'].browse(vals.get('book_id'))
+        if book and not book.is_available:
             raise ValidationError(_("El libro seleccionado no está disponible"))
         
         loan = super().create(vals)
         
         if book:
-            book.write({'available': False})
+            book.write({'is_available': False})
 
         return loan
  
@@ -65,7 +65,7 @@ class LibraryLoan(models.Model):
             'return_date':fields.Date.today(),
             'state': 'returned'
         })
-        self.book_id.write({'available': True})
+        self.book_id.write({'is_available': True})
         
     def action_renew_loan(self):
         self.ensure_one()

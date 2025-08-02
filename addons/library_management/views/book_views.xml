@@ -3,9 +3,12 @@
     <data>
         <record id="action_library_book" model="ir.actions.act_window">
             <field name="name">Libros</field>
-            <field name="res_model">library.book</field>
+            <field name="res_model">product.template</field>
             <field name="view_mode">tree,form</field>
+            <field name="domain">[('is_library_book', '=', True)]</field>
+            <field name="context">{'default_is_library_book': True}</field>
         </record>
+
         <menuitem
             id="library_menu_books"
             name="Libros"
@@ -13,48 +16,51 @@
             action="action_library_book"
             sequence="30"
         />
+
         <record id="view_book_tree" model="ir.ui.view">
             <field name="name">library.book.tree</field>
-            <field name="model">library.book</field>
+            <field name="model">product.template</field>
             <field name="arch" type="xml">
                 <tree>
-                    <field name="title" string="Titulo" />
+                    <field name="name" string="Título" />
                     <field name="author" string="Autor" />
                     <field name="isbn" string="ISBN" />
                     <field name="publication_date" string="Publicado en" />
                     <field name="years_since_publication" string="Años desde su publicación" />
-                    <field name="active" string="Disponible" widget="boolean_button" />
+                    <field name="is_available" string="Disponible" widget="boolean_button" />
+                    <field name="list_price" />
+                    <field name="available_in_pos" />
                 </tree>
             </field>
         </record>
+
         <record id="view_book_form" model="ir.ui.view">
             <field name="name">library.book.form</field>
-            <field name="model">library.book</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view" />
             <field name="arch" type="xml">
-                <form>
-                    <sheet>
-                        <group>
-                            <field name="title" />
-                            <field name="author" />
-                            <field name="isbn" />
-                            <field name="publication_date" string="Año de publicación" widget="integer"/>
-                            <field name="years_since_publication" readonly="1" />
-                        </group>
-                    </sheet>
-                </form>
-            </field>
-        </record>
-        <record id="view_book_search" model="ir.ui.view">
-            <field name="name">library.book.search</field>
-            <field name="model">library.book</field>
-            <field name="arch" type="xml">
-                <search>
-                    <field name="title" />
+                <xpath expr="//field[@name='default_code']" position="after">
                     <field name="author" />
                     <field name="isbn" />
-                    <filter name="older_than_5" string="+5 años"
-                        domain="[('years_since_publication','>',5)]" />
-                    <filter name="available" string="Disponibles" domain="[('active','=',True)]" />
+                    <field name="publication_date" string="Año de publicación" />
+                    <field name="years_since_publication" readonly="1" />
+                    <field name="is_available" />
+                    <field name="is_library_book" invisible="1" />
+                    <field name="type" invisible="1"/> <!-- Ocultamos el campo tipo para evitar conflicto visual -->
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_book_search" model="ir.ui.view">
+            <field name="name">library.book.search</field>
+            <field name="model">product.template</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name" string="Título"/>
+                    <field name="author"/>
+                    <field name="isbn"/>
+                    <filter name="older_than_5" string="+5 años" domain="[('years_since_publication','>',5)]"/>
+                    <filter name="available_books" string="Disponibles" domain="[('is_available','=',True)]"/>
                 </search>
             </field>
         </record>

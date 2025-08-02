@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <template id="portal_my_loans" name="Mis Préstamos" inherit_id="portal.portal_my_home">
+    <template id="portal_my_loans" name="Mis Préstamos">
         <t t-call="portal.portal_layout">
             <div class="container mt-3">
                 <div class="row mb-3">
@@ -42,7 +42,7 @@
                             <t t-foreach="loans" t-as="loan">
                                 <tr>
                                     <td>
-                                        <t t-esc="loan.book_id.title" />
+                                        <t t-esc="loan.book_id.name" />
                                     </td>
                                     <td>
                                         <t t-esc="loan.book_id.author" />
@@ -66,12 +66,12 @@
                                     </td>
                                     <td>
                                         <t t-if="loan.state in ['borrowed', 'overdue']">
-                                            <button t-if="loan.state == 'borrowed'"
-                                                t-att-data-loan-id="loan.id"
-                                                class="btn btn-sm btn-outline-primary btn-renew">
-                                                <i class="fa fa-refresh"></i> Renovar </button>
-                                            <a t-if="loan.pos_order_id"
-                                                t-att-href="'/web#model=pos.order&amp;id=' + str(loan.pos_order_id.id) + '&amp;view_type=form'"
+                                            <a t-if="loan.state == 'borrowed'"
+                                                t-att-href="'/my/loans/%s/renew' % loan.id"
+                                                class="btn btn-sm btn-outline-primary">
+                                                <i class="fa fa-refresh"></i> Renovar </a>
+
+                                            <a t-att-href="'/my/loans/%s/receipt' % loan.id"
                                                 target="_blank"
                                                 class="btn btn-sm btn-outline-info ml-2">
                                                 <i class="fa fa-receipt"></i> Recibo </a>
@@ -85,4 +85,57 @@
             </div>
         </t>
     </template>
+    <template id="portal_my_home_loans_link" inherit_id="portal.portal_my_home"
+        name="Enlace Mis Préstamos">
+        <xpath expr="//div[@class='o_portal_my_home']/div[last()]" position="after">
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <a href="/my/loans" class="text-decoration-none text-dark d-block h-100">
+                            <h5 class="card-title"><i class="fa fa-book fa-fw me-2 text-primary"></i>
+                                Mis Préstamos</h5>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+    <template id="portal_loan_receipt" name="Recibo de Préstamo">
+        <t t-call="portal.portal_layout">
+            <div class="container mt-5">
+                <div class="card p-4 shadow">
+                    <h2 class="mb-3"><i class="fa fa-receipt text-primary"></i> Recibo de Préstamo</h2>
+                    <p>
+                        <strong>Socio:</strong>
+                        <t t-esc="member.first_name" />
+                        <t t-esc="member.last_name" />
+                    </p>
+                    <p>
+                        <strong>Libro:</strong>
+                        <t t-esc="loan.book_id.name" />
+                    </p>
+                    <p>
+                        <strong>Autor:</strong>
+                        <t t-esc="loan.book_id.author" />
+                    </p>
+                    <p>
+                        <strong>Fecha de Préstamo:</strong>
+                        <t t-esc="loan.loan_date" />
+                    </p>
+                    <p>
+                        <strong>Fecha Límite:</strong>
+                        <t t-esc="loan.due_date" />
+                    </p>
+                    <p>
+                        <strong>Estado:</strong>
+                        <t t-if="loan.state == 'borrowed'">Prestado</t>
+                        <t t-if="loan.state == 'overdue'">Vencido</t>
+                        <t t-if="loan.state == 'returned'">Devuelto</t>
+                    </p>
+                    <a href="/my/loans" class="btn btn-primary mt-3">Volver a Mis Préstamos</a>
+                </div>
+            </div>
+        </t>
+    </template>
+
 </odoo>

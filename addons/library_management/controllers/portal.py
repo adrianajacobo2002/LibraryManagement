@@ -1,9 +1,10 @@
 from odoo import http
 from odoo.http import request
+from odoo.addons.portal.controllers.portal import CustomerPortal
 from datetime import date
 
 
-class LibraryPortal(http.Controller):
+class LibraryPortal(CustomerPortal):
 
     @http.route("/my/loans", type="http", auth="user", website=True)
     def portal_my_loans(self, **kw):
@@ -39,11 +40,7 @@ class LibraryPortal(http.Controller):
             "partner": partner,
         }
 
-        values.update(
-            request.env["ir.http"]
-            .with_context(no_breadcrumbs=False)
-            ._prepare_portal_layout_values()
-        )
+        values.update(self._prepare_portal_layout_values())
 
         if kw.get("renewed"):
             values["renew_success"] = True
@@ -81,3 +78,20 @@ class LibraryPortal(http.Controller):
             return request.redirect("/my/loans?renewed=1")
         except Exception as e:
             return request.redirect("/my/loans?error=1")
+        
+    @http.route("/my/loans/<int:loan_id>/receipt", type="http", auth="user", website=True)
+    def view_receipt(self, loan_id, **kw):
+        loan = request.env["library.loan"].sudo().browse(loan_id)
+
+        member = request.env["library.member"].sudo().search([
+            ("partner_id", "=", request.env.user.partner_id.id)
+        ], limit=1)
+
+        if not loan.exists() or loan.member_id != member:
+            return request.redirect("/my/loans")
+
+        return request.render("library_management.portal_loan_receipt", {
+            "loan": loan,
+            "member": member
+        })
+
