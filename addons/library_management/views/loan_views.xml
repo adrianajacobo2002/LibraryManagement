@@ -33,11 +33,17 @@
             <field name="arch" type="xml">
                 <form>
                     <header>
-                        <button name="action_return_book" string="Devolver" type="object"
-                            class="btn-primary" />
-                        <button name="action_renew_loan" string="Renovar" type="object"
-                            class="btn-secondary" />
-                        <field name="state" widget="statusbar" />
+                        <button name="action_send_overdue_email"
+                            type="object"
+                            string="Enviar recordatorio"
+                            class="oe_highlight"
+                            modifiers="{'invisible': [('state', '=', 'returned')]}" />
+                        <button name="action_return_book"
+                            string="Devolver"
+                            type="object"
+                            class="btn btn-primary"
+                            groups="library_management.group_library_librarian"
+                            modifiers='{"invisible": [["state", "=", "returned"]]}' />
                     </header>
                     <sheet>
                         <group>
@@ -49,6 +55,7 @@
                             <field name="due_date" />
                             <field name="return_date" />
                         </group>
+                        <field name="state" widget="statusbar" />
                         <field name="pos_order_id" invisible="1" />
                     </sheet>
                 </form>

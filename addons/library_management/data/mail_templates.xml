@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <!-- Plantilla para préstamos vencidos -->
     <record id="email_template_loan_overdue" model="mail.template">
         <field name="name">Notificación de préstamo vencido</field>
         <field name="model_id" ref="model_library_loan" />
         <field name="subject">Préstamo vencido - ${object.book_id.name}</field>
         <field name="email_from">${object.company_id.email or 'biblioteca@example.com'}</field>
-        <field name="email_to">${object.member_id.email}</field>
+        <field name="email_to">${(object.partner_id.email or '').strip()}</field>
         <field name="body_html">
             <![CDATA[
 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -44,13 +43,12 @@
         </field>
     </record>
 
-    <!-- Plantilla para confirmación de préstamo -->
     <record id="email_template_loan_confirmation" model="mail.template">
         <field name="name">Confirmación de préstamo</field>
         <field name="model_id" ref="model_library_loan" />
         <field name="subject">Confirmación de préstamo - ${object.book_id.name}</field>
         <field name="email_from">${object.company_id.email or 'biblioteca@example.com'}</field>
-        <field name="email_to">${object.member_id.email}</field>
+        <field name="email_to">${(object.member_id.email or object.member_id.partner_id.email or '').strip()}</field>
         <field name="body_html">
             <![CDATA[
 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -82,13 +80,12 @@
         </field>
     </record>
 
-    <!-- Plantilla para confirmación de devolución -->
     <record id="email_template_loan_return" model="mail.template">
         <field name="name">Confirmación de devolución</field>
         <field name="model_id" ref="model_library_loan" />
         <field name="subject">Devolución registrada - ${object.book_id.name}</field>
         <field name="email_from">${object.company_id.email or 'biblioteca@example.com'}</field>
-        <field name="email_to">${object.member_id.email}</field>
+        <field name="email_to">${(object.member_id.email or object.member_id.partner_id.email or '').strip()}</field>
         <field name="body_html">
             <![CDATA[
 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">

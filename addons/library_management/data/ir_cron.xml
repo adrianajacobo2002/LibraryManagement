@@ -1,5 +1,5 @@
 <odoo>
-    <record id="ir_cron_loan_overdue_check" model="ir.cron">
+    <record id="ir_cron_check_overdue_loans" model="ir.cron">
         <field name="name">Check Overdue Loans</field>
         <field name="model_id" ref="model_library_loan"/>
         <field name="state">code</field>

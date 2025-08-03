@@ -4,6 +4,7 @@ from datetime import date
 import secrets
 import base64
 
+
 class LibraryMember(models.Model):
     _name = "library.member"
     _inherit = ["mail.thread", "portal.mixin"]
@@ -31,6 +32,7 @@ class LibraryMember(models.Model):
         compute="_compute_active_loans", string="Préstamos Activos"
     )
 
+    name = fields.Char(string="Nombre completo", compute="_compute_name", store=True)
     first_name = fields.Char(string="Nombre", required=True, tracking=True)
     last_name = fields.Char(string="Apellido", required=True, tracking=True)
     email = fields.Char(string="Email", required=True, tracking=True)
@@ -134,3 +136,9 @@ class LibraryMember(models.Model):
                 raise UserError("El token ya ha sido generado.")
             token = secrets.token_urlsafe(16)
             member.access_token = base64.urlsafe_b64encode(token.encode()).decode()
+
+    @api.depends("code", "first_name", "last_name")
+    def _compute_name(self):
+        for rec in self:
+            full_name = f"{rec.first_name or ''} {rec.last_name or ''}".strip()
+            rec.name = f"[{rec.code}] {full_name}"

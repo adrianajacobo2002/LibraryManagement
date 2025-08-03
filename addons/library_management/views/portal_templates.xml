@@ -14,7 +14,7 @@
                     </div>
                 </div>
 
-                <t t-if="request.params.get('renewed')">
+                <t t-if="renew_success">
                     <div class="alert alert-success">Préstamo renovado exitosamente. Nueva fecha
                         límite: <t t-esc="loan.due_date" /></div>
                 </t>
@@ -58,7 +58,8 @@
                                     </td>
                                     <td>
                                         <span
-                                            t-att-class="'badge badge-pill ' + {'borrowed': 'badge-success', 'overdue': 'badge-danger', 'returned': 'badge-secondary'}.get(loan.state, 'badge-info')">
+                                            t-att-class="'badge px-3 py-2 text-white font-weight-bold rounded-pill ' + {'borrowed': 'bg-success', 'overdue': 'bg-danger', 'returned': 'bg-secondary'}.get(loan.state, 'bg-info')"
+                                            style="font-size: 0.95rem;">
                                             <t t-if="loan.state == 'borrowed'">Prestado</t>
                                             <t t-if="loan.state == 'overdue'">Vencido</t>
                                             <t t-if="loan.state == 'returned'">Devuelto</t>
@@ -87,16 +88,21 @@
     </template>
     <template id="portal_my_home_loans_link" inherit_id="portal.portal_my_home"
         name="Enlace Mis Préstamos">
-        <xpath expr="//div[@class='o_portal_my_home']/div[last()]" position="after">
+        <xpath expr="//div[@class='o_portal_my_home']" position="inside">
             <div class="col-12 col-md-6 col-lg-4 mb-4">
-                <div class="card h-100 shadow-sm">
-                    <div class="card-body">
-                        <a href="/my/loans" class="text-decoration-none text-dark d-block h-100">
-                            <h5 class="card-title"><i class="fa fa-book fa-fw me-2 text-primary"></i>
-                                Mis Préstamos</h5>
-                        </a>
+                <a href="/my/loans" class="text-decoration-none">
+                    <div class="card h-100 shadow-sm border-0 rounded-lg">
+                        <div
+                            class="card-body d-flex flex-column align-items-start justify-content-center p-4">
+                            <div class="mb-2">
+                                <i class="fa fa-book fa-2x text-primary"></i>
+                            </div>
+                            <h5 class="card-title mb-1 text-dark font-weight-bold">Mis Préstamos</h5>
+                            <p class="card-text text-muted">Revisa los libros que has solicitado y
+                                su estado.</p>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
         </xpath>
     </template>
@@ -137,5 +143,4 @@
             </div>
         </t>
     </template>
-
 </odoo>

@@ -11,9 +11,10 @@
         "views/member_views.xml",
         "views/book_views.xml",
         "views/portal_templates.xml",
+        "views/portal_books_templates.xml",
         "views/loan_views.xml",
-        "data/mail_templates.xml",
         "data/ir_cron.xml",
+        "data/mail_templates.xml",
     ],
     "installable": True,
     "application": True,
@@ -22,8 +23,5 @@
             "library_management/static/src/js/pos_loan.js",
             "library_management/static/src/xml/pos_loan_templates.xml"
         ],
-        #"web.assets_frontend": [
-        #    "library_management/static/src/js/portal_loan.js",
-        #],
     },
 }

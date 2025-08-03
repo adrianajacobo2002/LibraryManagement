@@ -75,7 +75,24 @@ class LibraryPortal(CustomerPortal):
 
         try:
             loan.action_renew_loan()
-            return request.redirect("/my/loans?renewed=1")
+            loans = request.env["library.loan"].sudo().search([
+                ("member_id", "=", member.id),
+                ("state", "in", ["borrowed", "overdue", "returned"]),
+            ], order="loan_date desc")
+
+            values = {
+                "loans": loans,
+                "member": member,
+                "loan": loan,
+                "today": date.today(),
+                "renew_success": True,
+                "page_name": "my_loans",
+            }
+
+            values.update(self._prepare_portal_layout_values())
+
+            return request.render("library_management.portal_my_loans", values)
+
         except Exception as e:
             return request.redirect("/my/loans?error=1")
         
@@ -94,4 +111,22 @@ class LibraryPortal(CustomerPortal):
             "loan": loan,
             "member": member
         })
+
+    @http.route('/my/books', type='http', auth='user', website=True)
+    def portal_available_books(self, **kw):
+        if not request.env.user or not request.env.user.partner_id:
+            return request.redirect('/my')
+
+        books = request.env['product.template'].sudo().search([
+            ('is_library_book', '=', True),
+            ('is_available', '=', True)
+        ])
+
+        values = {
+            'books': books,
+            'page_name': 'available_books'
+        }
+        values.update(self._prepare_portal_layout_values())
+
+        return request.render('library_management.portal_available_books', values)
 
