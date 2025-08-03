@@ -224,22 +224,33 @@ Define la lógica de negocio del sistema
 - partner.py: Extiende el modelo de contactos (res.partner) de odoo para integraciones.
 - pos_config.py - pos_order.py: Lógica para integrar préstamos con el punto de venta POS.
 - book_variant.py: Gestiona variantes si se habilitan.
-- 
+
 ```bash
 views/
 ```
-
+Define interfaz visual
+- book_views.xml, member_views.xml, loan_views.xml: Forms, listas y acciones del backend.
+- portal_templates.xml: Vista del portal con la lista de préstamos del socio.
+- portal_book_templates.xml: Vista con libros disponibles para solicitar desde el portal.
 ```bash
 data/
 ```
-
+Datos que son cargados automáticamente
+- mail_templates.xml: Plantillas de correo.
+- ir_cron.xml: Tarea programada para verificar vencimientos a diario.
 ```bash
 security/
 ```
+Control de accesos y roles
+- ir.model.access.csv: Se encarga de definir permisos CRUD sobre cada modelo.
+- library_security.xml: Define los grupos de usuario
 ```bash
 static/
 ```
-
+Archivos estáticos personalizados
+- js/pos_loan.js: Extiende el comportamiento del POS para registrar préstamos.
+- xml/pos_loan_templates.xml: personalización del POS
 ```bash
 __manifest__.py/
 ```
+Archivo principal de definición del módulo, que incluye, nombre, descripción, dependencias, datos a cargar, versión, etc.
