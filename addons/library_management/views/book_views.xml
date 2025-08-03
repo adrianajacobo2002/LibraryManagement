@@ -46,7 +46,7 @@
                     <field name="years_since_publication" readonly="1" />
                     <field name="is_available" />
                     <field name="is_library_book" invisible="1" />
-                    <field name="type" invisible="1"/> <!-- Ocultamos el campo tipo para evitar conflicto visual -->
+                    <field name="type" invisible="1"/> 
                 </xpath>
             </field>
         </record>
