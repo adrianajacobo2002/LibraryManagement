@@ -251,6 +251,6 @@ Archivos estáticos personalizados
 - js/pos_loan.js: Extiende el comportamiento del POS para registrar préstamos.
 - xml/pos_loan_templates.xml: personalización del POS
 ```bash
-__manifest__.py/
+__manifest__.py
 ```
 Archivo principal de definición del módulo, que incluye, nombre, descripción, dependencias, datos a cargar, versión, etc.
