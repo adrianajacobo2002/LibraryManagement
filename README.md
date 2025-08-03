@@ -6,7 +6,7 @@ Sistema de gestión de biblioteca desarrollado como parte de una prueba técnica
 Docker y Docker Compose instalados
 Puerto 8069 disponible
 
-## Configuración
+## Instalación General
 1. Clonar este repositorio
 ```bash
 git clone https://github.com/adrianajacobo2002/LibraryManagement.git
