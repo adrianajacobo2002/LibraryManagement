@@ -82,6 +82,9 @@ Algunas funcionalidades automatizadas dependen de parámetros del sistema. Para 
 | Clave                      | Valor                  | 
 | :------------------------- | :--------------------- | 
 | `mail.default.from_filter` | `library.com`          | 
+
+2. Guardar cada parámetro
+
 ## Verificación Funcional
 - Socios de biblioteca
 - Gestión de libros
