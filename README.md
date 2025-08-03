@@ -44,11 +44,17 @@ El módulo debe estar dentro de la carpeta addons/ incluída en este repositorio
 2. Actualizar lista de aplicaciones
    - En el menú de Apps
    - Clic en "Actualizar lista de aplicaciones"
-   - Buscar
-```bash
-Library Management
-```
+   - Buscar Library Management
    - Clic en "Instalar"
+  
+## Verificación Funcional
+- Gestión de libros
+- Socios de biblioteca
+- Préstamos y devoluciones
+- Roles y permisos
+- Portal web del cliente
+- POS para préstamos rápidos
+- API REST
 Estructura del Proyecto
 Requerimientos
 Odoo: [17]
