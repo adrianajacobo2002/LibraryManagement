@@ -46,6 +46,12 @@ El módulo debe estar dentro de la carpeta addons/ incluída en este repositorio
    - Clic en "Actualizar lista de aplicaciones"
    - Buscar Library Management
    - Clic en "Instalar"
+3. Asignar Rol de Bibliotecario
+   - Ajusted > Usuarios > Administrar usuarios
+   - Seleccionar el usuario Administrator
+   - En la pestaña OTHER, localizar la sección Library
+   - Cambiar el rol A Bibliotecario
+   - Guardar los cambios
   
 ## Verificación Funcional
 - Gestión de libros
@@ -55,23 +61,6 @@ El módulo debe estar dentro de la carpeta addons/ incluída en este repositorio
 - Portal web del cliente
 - POS para préstamos rápidos
 - API REST
-Estructura del Proyecto
-Requerimientos
-Odoo: [17]
-Python
-Docker y Docker Compose
-Cuenta de correo Gmail (para configuración SMTP) 
-Git
-
-Instalación y configuración
-Clonar el repositorio
-git clone [text](https://github.com/adrianajacobo2002/LibraryManagement.git)
 
 
-Levantar el entorno usando Docker
-docker compose up -d
-
-Esto levantará:
-Contenedor de Odoo en el puerto 8069
-Contenedor de PostgreSQL como base de datos
 
