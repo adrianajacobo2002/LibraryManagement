@@ -71,7 +71,15 @@ Para permitir que el sistema envíe notificaciones por correo (por ejemplo, avis
 En el caso de la contraseña, se debe de activar las contraseñas de aplicaciones en gmail.
 
 ## Parámetros del Sistema
+Algunas funcionalidades automatizadas dependen de parámetros del sistema. Para configurarlos:
+1. Ajustes > Técnico > Parámetros > Parámetros del sistema > Nuevo
+| Clave             | Valor                                               |
+| ----------------- | --------------------------------------------------- |
+| mail.default.from | [tucorreo@dominio.com](mailto:tucorreo@dominio.com) |
 
+| Clave                      | Valor                  | 
+| :------------------------- | :--------------------- | 
+| `mail.default.from_filter` | `library.com`          | 
 ## Verificación Funcional
 - Socios de biblioteca
 - Gestión de libros
