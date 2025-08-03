@@ -3,7 +3,7 @@
 Sistema de gestión de biblioteca desarrollado como parte de una prueba técnica para Odoo Developer. Este proyecto incluye funcionalidades como gestión de socios, préstamos, renovaciones, acceso por portal y servicios API REST para disponibilidad de libros.
 
 ## Requisitos Previos
--Docker y Docker Compose instalados
+- Docker y Docker Compose instalados
 - Puerto 8069 disponible
 
 ## Instalación General
