@@ -134,4 +134,34 @@ http://localhost:8069/
 - "Mis préstamos" con información sobre su estado, libro solicitado, fecha de préstamo y fecha límite, además de poner renovar (30 días más) o ver el Recibo (Información)
 - "Libros disponibles" de solicitar al bibliotecario su préstamo
 
+## API REST - Disponilidad de Libros
+Endpoint público para consultar la disponibilidad de un libro por su código ISBN.
 
+```http
+  POST /api/book/<isbn>
+```
+- Tipo de solicitud: POST
+- Formato del cuerpo: Ninguno
+- Tipo de contenido: application/json
+- Autenticación: No requiere (auth='public')
+
+### Ejemplo
+```http
+  http://localhost:8069/api/book/9781234567890
+```
+Respuesta exitosa (HTTP 200)
+```json
+  {
+  "book_id": 42,
+  "isbn": "9781234567890",
+  "name": "Cien años de soledad",
+  "available": true
+}
+```
+Respuesta si el libro no existe
+```json
+  {
+  "error": "Libro no encontrado",
+  "isbn": "9780000000000"
+}
+```
