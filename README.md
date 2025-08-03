@@ -69,11 +69,29 @@ El módulo debe estar dentro de la carpeta addons/ incluída en este repositorio
 3. Clic en Generar Token Portal
 4. Salir
 
-## Libros (productos)
+### Libros (productos)
 1. Nuevo
 2. Rellenar campos solicitados (Nombre del producto, Autor, ISBN, Año de publicación)
 3. Seleccionar Tipo de producto > Producto Almacenable
 4. Activar "Se puede vender" y "Se puede comprar"
 5. Pestaña Ventas clic en "Disponible en PdV" (Punto de venta)
 6. Guardar
+
+### Préstamo (POS)
+1. Dirigirse al panel de aplicaciones
+2. Punto de Venta
+3. Seleccionar POS > Nueva Sesión
+4. Control de apertura de caja > Abrir sesión
+5. Cliente > Seleccionar Cliente
+6. Agregar libros al carrito > Pago> Validar > Nueva orden (si así lo desea)
+7. Cerrar sesión de POS
+
+##Portal Web Socio
+- Acceder a
+```bash
+http://localhost:8069/
+```
+- Iniciar Sesión con credenciales enviadas al correo
+- Dashboard de Socio (Mis préstamos y Libros disponibles)
+- Mis préstamos con información sobre su estado, libro solicitado, fecha de préstamo y fecha límite, además de poner renovar (30 días más) o ver el Recibo (Información)
 
