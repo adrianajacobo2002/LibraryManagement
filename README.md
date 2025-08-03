@@ -63,7 +63,7 @@ El módulo debe estar dentro de la carpeta addons/ incluída en este repositorio
 - POS para préstamos rápidos
 - API REST
 
-## Socios (clientes)
+### Socios (clientes)
 1. Nuevo
 2. Rellenar campos solicitados (nombre, apellido, email)
 3. Clic en Generar Token Portal
