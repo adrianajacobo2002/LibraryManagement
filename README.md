@@ -91,7 +91,7 @@ Para actualizar el módulo con cambios recientes sin necesidad de reinstalarlo:
 ```bash
 docker-compose restart web
 ```
-También se puede forzar la recarga de módulos desde la terminal del contenedor:
+- También se puede forzar la recarga de módulos desde la terminal del contenedor:
 ```bash
 docker-compose exec web odoo -u library_management -d <nombre_de_base_de_datos>
 ```
