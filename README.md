@@ -23,18 +23,32 @@ Esto ejecutará los siguientes servicios:
 - db: PostgreSQL 15 en el puerto 5433.
 
 3. Acceder a Odoo
-
-En el navegador abrir:
+   En el navegador abrir:
 ```bash
 http://localhost:8069/web
 ```
 4. Crear una nueva base de datos
-Llenando los campos solicitados
+   Llenando los campos solicitados
 
-5. Iniciar Sesión
-Con las credenciales creadas con anterioridad
+6. Iniciar Sesión
+   Con las credenciales creadas con anterioridad
 
 ## Instalación del Módulo Library Management
+El módulo debe estar dentro de la carpeta addons/ incluída en este repositorio
+
+1. Activar el modo desarrollador en Odoo
+   - Dentro de http://localhost:8069/web
+   - Hacer clic en el panel de aplicaciones
+   - Ajustes
+   - "Activar el modo desarrollador"
+2. Actualizar lista de aplicaciones
+   - En el menú de Apps
+   - Clic en "Actualizar lista de aplicaciones"
+   - Buscar
+```bash
+Library Management
+```
+   - Clic en "Instalar"
 Estructura del Proyecto
 Requerimientos
 Odoo: [17]
