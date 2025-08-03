@@ -19,9 +19,15 @@ cd library_management
 docker-compose up --build
 ```
 Esto ejecutará los siguientes servicios:
-web: Odoo 17 en el puerto ``` bash 8069
-```
+web: Odoo 17 en el puerto 8069.
+db: PostgreSQL 15 en el puerto 5433.
 
+3. Acceder a Odoo
+En el navegador abrir:
+```bash
+http://localhost:8069/web
+```
+4. Crear una nueva base de datos
 Estructura del Proyecto
 Requerimientos
 Odoo: [17]
