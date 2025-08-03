@@ -18,6 +18,10 @@ cd library_management
 ```bash
 docker-compose up --build
 ```
+Esto ejecutará los siguientes servicios:
+web: Odoo 17 en el puerto ``` bash 8069
+```
+
 Estructura del Proyecto
 Requerimientos
 Odoo: [17]
