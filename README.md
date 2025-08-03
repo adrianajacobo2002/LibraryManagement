@@ -53,7 +53,28 @@ El módulo debe estar dentro de la carpeta addons/ incluída en este repositorio
    - Cambiar el rol A Bibliotecario
    - Guardar los cambios
 4. Acceder a Biblioteca por medio del panel de aplicaciones
-  
+
+## Configuración de Correo Saliente
+Para permitir que el sistema envíe notificaciones por correo (por ejemplo, avisos de préstamos vencidos), es necesario configurar un servidor de correo saliente.
+1. Ajustes > Técnico > Correo > Servidores de correo saliente
+2. Clic en Nuevo y completar los datos del proveedor de correo, por ejemplo:
+| Campo | Valor de ejemplo     | 
+| :-------- | :------- | 
+| Nombre | `string` |
+| :-------- | :------- | 
+| Cifrado de la conexión | `TLS (STARTTLS)` |
+| :-------- | :------- | 
+| Servidor SMTP | `smtp.gmail.com` |
+| :-------- | :------- | 
+| Puerto SMTP | `587` |
+| :-------- | :------- | 
+| Nombre de usuario | `tucorreo@gmail.com` |
+| :-------- | :------- | 
+   Contraseña | `tu-contraseña` |
+En el caso de la contraseña, se debe de activar las contraseñas de aplicaciones en gmail.
+
+## Parámetros del Sistema
+
 ## Verificación Funcional
 - Socios de biblioteca
 - Gestión de libros
