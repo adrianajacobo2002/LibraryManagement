@@ -67,7 +67,8 @@ El módulo debe estar dentro de la carpeta addons/ incluída en este repositorio
 1. Nuevo
 2. Rellenar campos solicitados (nombre, apellido, email)
 3. Clic en Generar Token Portal
-4. Salir
+4. El socio recibe un correo para que establezca su contraseña para poder acceder al portal correspondiente
+5. Salir
 
 ### Libros (productos)
 1. Nuevo
@@ -86,12 +87,20 @@ El módulo debe estar dentro de la carpeta addons/ incluída en este repositorio
 6. Agregar libros al carrito > Pago> Validar > Nueva orden (si así lo desea)
 7. Cerrar sesión de POS
 
-##Portal Web Socio
+### Préstamos
+Información relevante de cada préstamo gestionado dentro del sistema POS, incluyendo información de libro, socio, fecha del préstamo, fecha límite, devolución, y estado.
+1. Seleccionar préstamo
+2. Devolver
+3. Enviar Recordatorio en caso de haber sobrepasado la fecha límite de préstamo
+
+## Portal Web Socio
 - Acceder a
 ```bash
 http://localhost:8069/
 ```
 - Iniciar Sesión con credenciales enviadas al correo
 - Dashboard de Socio (Mis préstamos y Libros disponibles)
-- Mis préstamos con información sobre su estado, libro solicitado, fecha de préstamo y fecha límite, además de poner renovar (30 días más) o ver el Recibo (Información)
+- "Mis préstamos" con información sobre su estado, libro solicitado, fecha de préstamo y fecha límite, además de poner renovar (30 días más) o ver el Recibo (Información)
+- "Libros disponibles" de solicitar al bibliotecario su préstamo
+
 
