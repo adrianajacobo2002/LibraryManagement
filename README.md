@@ -85,6 +85,28 @@ Algunas funcionalidades automatizadas dependen de parámetros del sistema. Para 
 
 2. Guardar cada parámetro
 
+## Actualización del Módulo
+- Desde la consola:
+Para actualizar el módulo con cambios recientes sin necesidad de reinstalarlo:
+```bash
+docker-compose restart web
+```
+También se puede forzar la recarga de módulos desde la terminal del contenedor:
+```bash
+docker-compose exec web odoo -u library_management -d <nombre_de_base_de_datos>
+```
+- Desde Odoo
+Aplicaciones > Buscar Library Management > Clic en Actualizar
+
+## Apagar los contenedores
+```bash
+docker-compose down
+```
+Si se desean eliminar los datos de la base de datos:
+```bash
+docker-compose down -v
+```
+
 ## Verificación Funcional
 - Socios de biblioteca
 - Gestión de libros
