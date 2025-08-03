@@ -58,6 +58,7 @@ El módulo debe estar dentro de la carpeta addons/ incluída en este repositorio
 Para permitir que el sistema envíe notificaciones por correo (por ejemplo, avisos de préstamos vencidos), es necesario configurar un servidor de correo saliente.
 1. Ajustes > Técnico > Correo > Servidores de correo saliente
 2. Clic en Nuevo y completar los datos del proveedor de correo, por ejemplo:
+
 | Campo                      | Valor de ejemplo     |
 | -------------------------- | -------------------- |
 | **Nombre**                 | `Gmail SMTP`         |
@@ -73,9 +74,10 @@ En el caso de la contraseña, se debe de activar las contraseñas de aplicacione
 ## Parámetros del Sistema
 Algunas funcionalidades automatizadas dependen de parámetros del sistema. Para configurarlos:
 1. Ajustes > Técnico > Parámetros > Parámetros del sistema > Nuevo
-| Clave             | Valor                                               |
-| ----------------- | --------------------------------------------------- |
-| mail.default.from | [tucorreo@dominio.com](mailto:tucorreo@dominio.com) |
+
+| Clave                      | Valor                           | 
+| :------------------------- | :------------------------------ | 
+| `mail.default.from       ` | `tucorreo@dominio.com`          |
 
 | Clave                      | Valor                  | 
 | :------------------------- | :--------------------- | 
