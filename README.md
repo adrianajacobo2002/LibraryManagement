@@ -151,7 +151,7 @@ Endpoint público para consultar la disponibilidad de un libro por su código IS
 ```
 Respuesta exitosa (HTTP 200)
 ```json
-  {
+{
   "book_id": 42,
   "isbn": "9781234567890",
   "name": "Cien años de soledad",
@@ -160,7 +160,7 @@ Respuesta exitosa (HTTP 200)
 ```
 Respuesta si el libro no existe
 ```json
-  {
+{
   "error": "Libro no encontrado",
   "isbn": "9780000000000"
 }
