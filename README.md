@@ -6,6 +6,12 @@ Sistema de gestión de biblioteca desarrollado como parte de una prueba técnica
 Docker y Docker Compose instalados
 Puerto 8069 disponible
 
+##Estructura del Proyecto
+├── addons/               # Módulos personalizados de Odoo
+├── odoo.conf             # Archivo de configuración de Odoo
+├── docker-compose.yml    # Definición de servicios: Odoo + PostgreSQL
+└── README.md
+
 ## Instalación
 1. Clonar este repositorio
 ```bash
@@ -23,11 +29,14 @@ Esto ejecutará los siguientes servicios:
 - db: PostgreSQL 15 en el puerto 5433.
 
 3. Acceder a Odoo
+
 En el navegador abrir:
 ```bash
 http://localhost:8069/web
 ```
 4. Crear una nueva base de datos
+Llenando los campos solicitados
+
 Estructura del Proyecto
 Requerimientos
 Odoo: [17]
