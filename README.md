@@ -6,12 +6,6 @@ Sistema de gestión de biblioteca desarrollado como parte de una prueba técnica
 Docker y Docker Compose instalados
 Puerto 8069 disponible
 
-##Estructura del Proyecto
-├── addons/               # Módulos personalizados de Odoo
-├── odoo.conf             # Archivo de configuración de Odoo
-├── docker-compose.yml    # Definición de servicios: Odoo + PostgreSQL
-└── README.md
-
 ## Instalación
 1. Clonar este repositorio
 ```bash
@@ -37,6 +31,10 @@ http://localhost:8069/web
 4. Crear una nueva base de datos
 Llenando los campos solicitados
 
+5. Iniciar Sesión
+Con las credenciales creadas con anterioridad
+
+## Instalación del Módulo Library Management
 Estructura del Proyecto
 Requerimientos
 Odoo: [17]
