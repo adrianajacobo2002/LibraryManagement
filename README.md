@@ -47,7 +47,7 @@ El módulo debe estar dentro de la carpeta addons/ incluída en este repositorio
    - Buscar Library Management
    - Clic en "Instalar"
 3. Asignar Rol de Bibliotecario
-   - Ajusted > Usuarios > Administrar usuarios
+   - Ajustes > Usuarios > Administrar usuarios
    - Seleccionar el usuario Administrator
    - En la pestaña OTHER, localizar la sección Library
    - Cambiar el rol A Bibliotecario
