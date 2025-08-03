@@ -52,6 +52,7 @@ El módulo debe estar dentro de la carpeta addons/ incluída en este repositorio
    - En la pestaña OTHER, localizar la sección Library
    - Cambiar el rol A Bibliotecario
    - Guardar los cambios
+4. Acceder a Biblioteca por medio del panel de aplicaciones
   
 ## Verificación Funcional
 - Gestión de libros
@@ -62,5 +63,12 @@ El módulo debe estar dentro de la carpeta addons/ incluída en este repositorio
 - POS para préstamos rápidos
 - API REST
 
+##Socios (clientes)
+1. Nuevo
+2. Rellenar campos solicitados (nombre, apellido, email)
+3. Clic en Generar Token Portal
+4. Salir
+
+## Libros (productos)
 
 
