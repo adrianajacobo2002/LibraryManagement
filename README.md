@@ -187,3 +187,59 @@ Respuesta si el libro no existe
   "isbn": "9780000000000"
 }
 ```
+
+## Estructura del módulo y descripción de código fuente
+
+El módulo está organizado según la arquitectura estándar de Odoo
+```bash
+C:.
+└───library_management
+    ├───controllers
+    │   └───__pycache__
+    ├───data
+    ├───models
+    │   └───__pycache__
+    ├───security
+    ├───static
+    │   ├───js
+    │   └───xml
+    ├───views
+    └───__pycache__
+```
+
+```bash
+controllers/
+```
+Rutas y vistas accesibles por HTTP o el portal.
+- api.py: Endpoint para consultar la disponibilidad de libros por ISBN
+- portal.py: Rutas del portal web para socios de biblioteca
+  
+```bash
+models/
+```
+Define la lógica de negocio del sistema
+- member.py: Modelo de socios con generación automática de código único.
+- book.py: Modelo de libros, donde se incluye el cálculo de años desde su publicación.
+- loan.py: Modelo de préstamos, es el que gestiona fechas, renovaciones, límites y vencimientos.
+- partner.py: Extiende el modelo de contactos (res.partner) de odoo para integraciones.
+- pos_config.py - pos_order.py: Lógica para integrar préstamos con el punto de venta POS.
+- book_variant.py: Gestiona variantes si se habilitan.
+- 
+```bash
+views/
+```
+
+```bash
+data/
+```
+
+```bash
+security/
+```
+```bash
+static/
+```
+
+```bash
+__manifest__.py/
+```
